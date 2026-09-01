@@ -1,16 +1,15 @@
 // Prashwa Jewels — data model.
 //
-// Dev/demo uses SQLite (zero setup, file-based — see DATABASE_URL in
-// .env.example). For production, point DATABASE_URL at a hosted Postgres
-// instance (Vercel Postgres, Neon, Supabase, ...) and change `provider`
-// below to "postgresql" — every model here is Postgres-compatible as-is.
+// Postgres (Vercel Postgres, Neon, Supabase, ...) — set DATABASE_URL to a
+// Postgres connection string, both locally and in production. See
+// .env.example for local setup notes.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
