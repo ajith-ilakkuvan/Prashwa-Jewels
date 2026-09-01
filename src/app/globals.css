@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/**
+ * Brand palette, matched to Prashwa Jewels' actual storefront: an ivory/
+ * stone facade, near-black signage board lettered in gold, and a cream +
+ * black-panel interior with gold trim. --color-brand-black plays the role
+ * a "brand color" usually plays (header CTA, dark section backgrounds,
+ * --color-brand-black-deep as a full-bleed footer/hero background), paired
+ * with a warm metallic gold as the shining accent — ivory stays the
+ * dominant page background for readability. Change these values to
+ * re-theme the entire site — every component reads from these tokens
+ * rather than hardcoding colors.
+ */
+:root {
+  --color-brand-black: #1a160f;
+  --color-brand-black-deep: #0d0b07;
+  --color-brand-black-light: #332c1f;
+  --color-brand-gold: #b8892f;
+  --color-brand-gold-light: #e8d9ad;
+  --color-brand-gold-dark: #8a6a1f;
+  --color-brand-gold-shine: #f7ecc9;
+  --color-charcoal: #211d17;
+  --color-ink: #2a2318;
+  --color-cream: #f8f4ea;
+  --color-cream-dark: #efe6d2;
+
+  --background: #ffffff;
+  --foreground: var(--color-ink);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-black: var(--color-brand-black);
+  --color-brand-black-deep: var(--color-brand-black-deep);
+  --color-brand-black-light: var(--color-brand-black-light);
+  --color-brand-gold: var(--color-brand-gold);
+  --color-brand-gold-light: var(--color-brand-gold-light);
+  --color-brand-gold-dark: var(--color-brand-gold-dark);
+  --color-brand-gold-shine: var(--color-brand-gold-shine);
+  --color-charcoal: var(--color-charcoal);
+  --color-ink: var(--color-ink);
+  --color-cream: var(--color-cream);
+  --color-cream-dark: var(--color-cream-dark);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+}
+
+/**
+ * Metallic gold gradient text — used sparingly, on the same premium
+ * numerals/headings a poster would render in gold foil (rate figures,
+ * the calculator's estimated value). Not a general utility for body text.
+ */
+.text-gold-shine {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-gold-dark) 0%,
+    var(--color-brand-gold-shine) 45%,
+    var(--color-brand-gold) 75%,
+    var(--color-brand-gold-dark) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/**
+ * Liquid-fill hover effect: a color wave that expands from the cursor's
+ * entry point rather than a flat color fade. Apply `.liquid-fill` to the
+ * interactive element itself (it needs `overflow: hidden` + its own
+ * border-radius to clip the fill to the button's shape), render one
+ * `.liquid-fill__layer` child for the expanding color, and wrap the
+ * visible content in `.liquid-fill__content` so it stays above the fill.
+ * `--liquid-x`/`--liquid-y` are set from JS on pointer-enter (see
+ * `src/lib/liquidFill.ts`) to the cursor's position within the element.
+ */
+.liquid-fill {
+  position: relative;
+  overflow: hidden;
+}
+.liquid-fill__layer {
+  position: absolute;
+  inset: 0;
+  clip-path: circle(0% at var(--liquid-x, 50%) var(--liquid-y, 50%));
+  transition: clip-path 550ms var(--ease-liquid, cubic-bezier(0.22, 1, 0.36, 1));
+  pointer-events: none;
+}
+.liquid-fill:hover .liquid-fill__layer,
+.liquid-fill:focus-visible .liquid-fill__layer {
+  clip-path: circle(150% at var(--liquid-x, 50%) var(--liquid-y, 50%));
+}
+.liquid-fill__content {
+  position: relative;
+}
+
+/**
+ * Shine-sweep hover: a soft diagonal light band slides across the button
+ * and it lifts slightly, like light catching a polished surface — used
+ * for buttons everywhere EXCEPT the header (which has its own
+ * cursor-tracked liquid-fill above), so the two hover systems read as
+ * deliberately distinct rather than the same trick repeated everywhere.
+ * A background-image layered under the button's own background-color
+ * needs no extra markup or JS — it just slides via background-position.
+ */
+.btn-shine {
+  background-image: linear-gradient(115deg, transparent 28%, rgba(255, 255, 255, 0.75) 50%, transparent 72%);
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  background-position: -220% 0;
+  transition:
+    background-position 650ms ease,
+    transform 200ms ease-out,
+    box-shadow 200ms ease-out;
+}
+.btn-shine:hover,
+.btn-shine:focus-visible {
+  background-position: 220% 0;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -8px rgba(32, 27, 23, 0.35);
+}
+/** For buttons on a light background, where a white sweep would vanish. */
+.btn-shine--subtle {
+  background-image: linear-gradient(115deg, transparent 28%, rgba(26, 22, 15, 0.14) 50%, transparent 72%);
+}
+
+/**
+ * Nav-pop hover: plain text nav links (Home, Services, Locations, FAQs...)
+ * aren't buttons, so they get their own — a third, deliberately distinct
+ * hover system from the liquid-fill (header CTA buttons) and shine-sweep
+ * (page buttons) above. A gold pill pops/fades in from the link's own
+ * center behind the text on hover (its text turns red — set in the
+ * component — so it reads clearly on the gold), with a light band
+ * sweeping across it like a shine catching metal. Only the item under
+ * the cursor ever shows it.
+ */
+.nav-pop {
+  position: relative;
+  isolation: isolate;
+}
+.nav-pop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--color-brand-gold-light), var(--color-brand-gold) 65%, var(--color-brand-gold-dark));
+  transform: scale(0.85);
+  opacity: 0;
+  transition:
+    transform 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 200ms ease;
+}
+.nav-pop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.9) 50%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 220% 100%;
+  background-position: -220% 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+}
+.nav-pop:hover::before,
+.nav-pop:focus-visible::before {
+  transform: scale(1);
+  opacity: 1;
+}
+.nav-pop:hover::after,
+.nav-pop:focus-visible::after {
+  opacity: 1;
+  background-position: 220% 0;
+  transition:
+    background-position 650ms ease 100ms,
+    opacity 100ms ease;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Visible, accessible focus state for keyboard navigation. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-gold-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Respect reduced-motion preference site-wide as a safety net; the Reveal
+   component also checks this explicitly before animating. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Shared form-field style — used across checkout, contact and admin forms
+   so every input/select/textarea looks consistent without repeating the
+   same long Tailwind class string everywhere. */
+.input {
+  @apply w-full rounded-lg border border-charcoal/20 bg-white px-3 py-2 text-sm text-charcoal outline-none transition-colors focus:border-brand-black;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
