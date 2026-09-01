@@ -4,6 +4,15 @@ import { db } from "@/lib/db";
 
 const staticPaths = ["/", "/shop/", "/collections/", "/about/", "/contact/", "/faq/", "/privacy-policy/", "/terms/"];
 
+/**
+ * Reads live products/categories from the database, so it must render
+ * per-request rather than being pre-generated at build time — a
+ * build-time sitemap would (a) need the database reachable during the
+ * build itself, which it may not be, and (b) go stale between deploys as
+ * the catalog changes via /admin/.
+ */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 

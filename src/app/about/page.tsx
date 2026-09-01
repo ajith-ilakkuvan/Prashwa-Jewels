@@ -11,6 +11,9 @@ import { siteConfig } from "@/config/site";
 
 const crumbs = [{ label: "About", href: "/about/" }];
 
+/** Reads admin-editable content from the database — see sitemap.ts for why this can't be static. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "About Us",
   description:
