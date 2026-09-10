@@ -11,6 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { productJsonLd } from "@/lib/structuredData";
 import { getProductBySlug, getRelatedProducts } from "@/lib/products";
 import { formatInr } from "@/lib/utils";
+import { ensureCatalogSeeded } from "@/lib/ensureSeeded";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +29,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  await ensureCatalogSeeded();
+
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();

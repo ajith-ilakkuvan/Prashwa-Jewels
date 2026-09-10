@@ -6,6 +6,7 @@ import { ProductGrid } from "@/components/shop/ProductGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
 import { getCategoryBySlug, getShopProducts } from "@/lib/products";
+import { ensureCatalogSeeded } from "@/lib/ensureSeeded";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
+  await ensureCatalogSeeded();
+
   const { slug } = await params;
   const category = await getCategoryBySlug(slug);
   if (!category) notFound();

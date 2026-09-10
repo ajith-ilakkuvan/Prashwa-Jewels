@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FinalCtaSection } from "@/components/cta/FinalCtaSection";
 import { siteConfig } from "@/config/site";
+import { ensureCatalogSeeded } from "@/lib/ensureSeeded";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  await ensureCatalogSeeded();
+
   return (
     <>
       <Hero />

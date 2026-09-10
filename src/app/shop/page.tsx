@@ -6,6 +6,7 @@ import { ProductGrid } from "@/components/shop/ProductGrid";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbJsonLd } from "@/components/ui/Breadcrumbs";
 import { getShopProducts, getAllCategories, getDistinctMetals, type ShopFilters } from "@/lib/products";
+import { ensureCatalogSeeded } from "@/lib/ensureSeeded";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,8 @@ export default async function ShopPage({
 }: {
   searchParams: Promise<{ category?: string; metal?: string; sort?: string }>;
 }) {
+  await ensureCatalogSeeded();
+
   const params = await searchParams;
   const filters: ShopFilters = {
     category: params.category || undefined,
