@@ -49,7 +49,7 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="bg-brand-black py-16 sm:py-24">
+    <section className="antique-arch-row bg-brand-black py-16 sm:py-24">
       <Container>
         <SectionHeading tone="dark" eyebrow="Why Prashwa Jewels" title="Handcrafted, Certified, Trusted" />
 

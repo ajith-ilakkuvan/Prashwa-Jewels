@@ -19,6 +19,17 @@ export async function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-brand-black">
+      {/* Shared jharokha-style pointed-arch clip path, referenced by both
+          layers of the photo frame below (see the .arch-frame comment in
+          globals.css for why a plain box-shadow can't be used here). */}
+      <svg width="0" height="0" aria-hidden="true">
+        <defs>
+          <clipPath id="hero-arch-clip" clipPathUnits="objectBoundingBox">
+            <path d="M0,1 L0,0.42 C0.15,0.30 0.15,0.10 0.5,0 C0.85,0.10 0.85,0.30 1,0.42 L1,1 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+
       <HeroParallax>
         {/* Warm gold glow — an abstract nod to the storefront's chandelier and gold trim. */}
         <div
@@ -73,22 +84,29 @@ export async function Hero() {
           </Reveal>
 
           <Reveal variant="scale-in" delayMs={120} className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none">
-            <div className="hero-parallax-photo relative aspect-[4/5] w-full overflow-hidden rounded-2xl border-2 border-brand-gold/40 shadow-xl shadow-black/40">
-              {hero.image ? (
-                <Image
-                  src={hero.image}
-                  alt="Prashwa Jewels boutique"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 420px, 90vw"
-                  className="object-cover"
-                />
-              ) : (
-                <div className="flex size-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand-black-light to-brand-black-deep text-center">
-                  <Gem aria-hidden="true" className="size-10 text-brand-gold" />
-                  <p className="px-6 text-sm text-white/60">Storefront &amp; collection photos coming soon</p>
-                </div>
-              )}
+            {/* Jharokha-style pointed arch frame: a gold-gradient outer layer
+                clipped to the arch, with the photo itself as a slightly
+                inset second layer clipped to the same arch — the gap between
+                the two reads as a carved stone frame border. */}
+            <div className="hero-parallax-photo arch-frame relative aspect-[4/5] w-full" style={{ clipPath: "url(#hero-arch-clip)" }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-gold-shine via-brand-gold to-brand-gold-dark" />
+              <div className="absolute inset-[3%] overflow-hidden" style={{ clipPath: "url(#hero-arch-clip)" }}>
+                {hero.image ? (
+                  <Image
+                    src={hero.image}
+                    alt="Prashwa Jewels boutique"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 420px, 90vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex size-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-brand-black-light to-brand-black-deep text-center">
+                    <Gem aria-hidden="true" className="size-10 text-brand-gold" />
+                    <p className="px-6 text-sm text-white/60">Storefront &amp; collection photos coming soon</p>
+                  </div>
+                )}
+              </div>
             </div>
           </Reveal>
         </Container>

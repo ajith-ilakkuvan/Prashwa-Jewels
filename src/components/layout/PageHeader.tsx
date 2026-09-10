@@ -12,12 +12,14 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <section className="border-b border-white/10 bg-brand-black py-10 sm:py-14">
+    <section className="relative border-b border-white/10 bg-brand-black py-10 sm:py-14">
+      <div aria-hidden="true" className="antique-cornice absolute inset-x-0 top-0" />
       <Container>
         <Breadcrumbs items={crumbs} tone="dark" />
         <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">{title}</h1>
         {description && <p className="mt-3 max-w-2xl text-base text-white/80">{description}</p>}
       </Container>
+      <div aria-hidden="true" className="antique-cornice antique-cornice--bottom absolute inset-x-0 bottom-0" />
     </section>
   );
 }
