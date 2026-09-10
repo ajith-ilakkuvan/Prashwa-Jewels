@@ -316,8 +316,21 @@
   animation: ornament-pulse 2.2s ease-in-out infinite;
 }
 
+/**
+ * Antique jaali (lattice) motif — a faint repeating diamond trellis with
+ * a dot at each intersection, echoing the lattice-worked bangles and
+ * temple-antique pieces in the catalog. Sits behind every page as a
+ * subtle texture on the ivory background; sections with their own
+ * background color (the dark bands, white cards) simply paint over it,
+ * so it only shows through on the plain ivory areas — deliberately
+ * faint (≤13% alpha baked into the SVG itself) so body text stays
+ * fully readable on top of it.
+ */
 body {
-  background: var(--background);
+  background: var(--background)
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDQgTDU2IDMwIEwzMCA1NiBMNCAzMCBaIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTg0LDEzNyw0NywwLjEwKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMi4yIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMykiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjQiIHI9IjEuMyIgZmlsbD0icmdiYSgxODQsMTM3LDQ3LDAuMTEpIi8+PGNpcmNsZSBjeD0iNTYiIGN5PSIzMCIgcj0iMS4zIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMSkiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjU2IiByPSIxLjMiIGZpbGw9InJnYmEoMTg0LDEzNyw0NywwLjExKSIvPjxjaXJjbGUgY3g9IjQiIGN5PSIzMCIgcj0iMS4zIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMSkiLz48L3N2Zz4=");
+  background-repeat: repeat;
+  background-size: 60px 60px;
   color: var(--foreground);
 }
 
@@ -370,6 +383,30 @@ body {
 .iso-piece {
   transform-style: preserve-3d;
   animation: iso-spin-float 9s ease-in-out infinite;
+}
+
+/**
+ * Hero scroll parallax — each layer reads the single `--parallax-shift`
+ * variable set by HeroParallax.tsx at its own multiplier, so the
+ * background glow drifts slowest, the decorative rings a little faster
+ * (and the top-right one sideways too, for a subtle diagonal drift), and
+ * the photo card fastest and in the opposite direction, giving a sense
+ * of depth as the hero scrolls past. The `var(..., 0)` fallback means
+ * these are inert (no motion) until JS sets the variable, so reduced-
+ * motion visitors — for whom HeroParallax never runs — simply see the
+ * static layout.
+ */
+.hero-parallax-bg {
+  transform: translateY(calc(var(--parallax-shift, 0) * 0.12px));
+}
+.hero-parallax-ring-tr {
+  transform: translate(calc(var(--parallax-shift, 0) * 0.06px), calc(var(--parallax-shift, 0) * 0.22px));
+}
+.hero-parallax-ring-bl {
+  transform: translateY(calc(var(--parallax-shift, 0) * -0.18px));
+}
+.hero-parallax-photo {
+  transform: translateY(calc(var(--parallax-shift, 0) * -0.12px));
 }
 
 /* Shared form-field style — used across checkout, contact and admin forms
