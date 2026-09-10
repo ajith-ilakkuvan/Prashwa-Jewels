@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { CategoryShowcase } from "@/components/home/CategoryShowcase";
-import { IsometricShowcase } from "@/components/home/IsometricShowcase";
+import { CraftShowcase } from "@/components/home/CraftShowcase";
 import { BridalBanner } from "@/components/home/BridalBanner";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { WhyUs } from "@/components/home/WhyUs";
@@ -28,7 +28,7 @@ export default async function HomePage() {
       <Hero />
       <TrustStrip />
       <CategoryShowcase />
-      <IsometricShowcase />
+      <CraftShowcase />
       <BridalBanner />
       <FeaturedProducts />
       <WhyUs />

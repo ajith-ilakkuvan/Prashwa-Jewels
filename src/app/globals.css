@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 /**
- * Brand palette, matched to Prashwa Jewels' actual storefront: an ivory/
- * stone facade, near-black signage board lettered in gold, and a cream +
- * black-panel interior with gold trim. --color-brand-black plays the role
- * a "brand color" usually plays (header CTA, dark section backgrounds,
- * --color-brand-black-deep as a full-bleed footer/hero background), paired
- * with a warm metallic gold as the shining accent — ivory stays the
- * dominant page background for readability. Change these values to
- * re-theme the entire site — every component reads from these tokens
- * rather than hardcoding colors.
+ * Brand palette: a deep wine maroon paired with cream/ivory, with warm
+ * metallic gold kept as the accent (the actual metal in the product
+ * photography). --color-brand-black is now the maroon and still plays the
+ * role a "brand color" usually plays (header CTA, dark section
+ * backgrounds), with --color-brand-black-deep as a near-black-maroon for
+ * full-bleed footer/hero backgrounds — kept under the original variable
+ * names so every component (already themed off these tokens rather than
+ * hardcoded colors) re-themes automatically. Cream is now the page's own
+ * background (see `--background` below), not just a section accent.
  */
 :root {
-  --color-brand-black: #1a160f;
-  --color-brand-black-deep: #0d0b07;
-  --color-brand-black-light: #332c1f;
+  --color-brand-black: #6b1420;
+  --color-brand-black-deep: #3d0a13;
+  --color-brand-black-light: #8a2233;
   --color-brand-gold: #b8892f;
   --color-brand-gold-light: #e8d9ad;
   --color-brand-gold-dark: #8a6a1f;
@@ -38,7 +38,7 @@
   --color-jewel-sapphire: #1e4d8c;
   --color-jewel-sapphire-light: #dce7f6;
 
-  --background: #ffffff;
+  --background: var(--color-cream);
   --foreground: var(--color-ink);
 }
 
@@ -318,17 +318,18 @@
 
 /**
  * Antique jaali (lattice) motif — a faint repeating diamond trellis with
- * a dot at each intersection, echoing the lattice-worked bangles and
+ * a maroon dot at each intersection's centre and gold dots at the
+ * corners, echoing the maroon+gold lattice-worked bangles and
  * temple-antique pieces in the catalog. Sits behind every page as a
- * subtle texture on the ivory background; sections with their own
+ * subtle texture on the cream background; sections with their own
  * background color (the dark bands, white cards) simply paint over it,
- * so it only shows through on the plain ivory areas — deliberately
- * faint (≤13% alpha baked into the SVG itself) so body text stays
+ * so it only shows through on the plain cream areas — deliberately
+ * faint (≤16% alpha baked into the SVG itself) so body text stays
  * fully readable on top of it.
  */
 body {
   background: var(--background)
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDQgTDU2IDMwIEwzMCA1NiBMNCAzMCBaIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTg0LDEzNyw0NywwLjEwKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMi4yIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMykiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjQiIHI9IjEuMyIgZmlsbD0icmdiYSgxODQsMTM3LDQ3LDAuMTEpIi8+PGNpcmNsZSBjeD0iNTYiIGN5PSIzMCIgcj0iMS4zIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMSkiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjU2IiByPSIxLjMiIGZpbGw9InJnYmEoMTg0LDEzNyw0NywwLjExKSIvPjxjaXJjbGUgY3g9IjQiIGN5PSIzMCIgcj0iMS4zIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xMSkiLz48L3N2Zz4=");
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTMwIDQgTDU2IDMwIEwzMCA1NiBMNCAzMCBaIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTA3LDIwLDMyLDAuMTIpIiBzdHJva2Utd2lkdGg9IjEiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyLjIiIGZpbGw9InJnYmEoMTA3LDIwLDMyLDAuMTUpIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSI0IiByPSIxLjMiIGZpbGw9InJnYmEoMTg0LDEzNyw0NywwLjE2KSIvPjxjaXJjbGUgY3g9IjU2IiBjeT0iMzAiIHI9IjEuMyIgZmlsbD0icmdiYSgxODQsMTM3LDQ3LDAuMTYpIi8+PGNpcmNsZSBjeD0iMzAiIGN5PSI1NiIgcj0iMS4zIiBmaWxsPSJyZ2JhKDE4NCwxMzcsNDcsMC4xNikiLz48Y2lyY2xlIGN4PSI0IiBjeT0iMzAiIHI9IjEuMyIgZmlsbD0icmdiYSgxODQsMTM3LDQ3LDAuMTYpIi8+PC9zdmc+");
   background-repeat: repeat;
   background-size: 60px 60px;
   color: var(--foreground);
@@ -355,34 +356,22 @@ body {
 }
 
 /**
- * Isometric jewellery pieces (ring/gemstone/pendant icons rendered as
- * shaded isometric cubes) that slowly tumble in 3D and float — used in
- * IsometricShowcase. Built on the individual `rotate`/`translate`
- * transform properties (not the `transform` shorthand) since both are
- * animated together within one keyframe set here, so there's no risk of
- * a second `transform`-based animation on the same element overwriting
- * this one (see the `.sparkle-drift` comment above for why that matters).
+ * Realistic ornament illustrations (CraftShowcase) — a slow vertical
+ * float, like a piece turning gently on a display stand, plus a
+ * `.twinkle` glint (reusing the keyframes above) on one small highlight
+ * circle per illustration for a catching-the-light moment.
  */
-.iso-scene {
-  perspective: 900px;
-}
-@keyframes iso-spin-float {
-  0% {
-    rotate: 0 1 0 0deg;
+@keyframes ornament-float {
+  0%,
+  100% {
     translate: 0 0;
   }
   50% {
-    rotate: 0 1 0 180deg;
-    translate: 0 -14px;
-  }
-  100% {
-    rotate: 0 1 0 360deg;
-    translate: 0 0;
+    translate: 0 -10px;
   }
 }
-.iso-piece {
-  transform-style: preserve-3d;
-  animation: iso-spin-float 9s ease-in-out infinite;
+.ornament-float {
+  animation: ornament-float 4.5s ease-in-out infinite;
 }
 
 /**

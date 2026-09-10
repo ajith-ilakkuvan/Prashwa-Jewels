@@ -102,7 +102,7 @@ export default function CheckoutPage() {
         description: "Order payment",
         order_id: result.razorpayOrderId,
         prefill: { name: parsed.data.customerName, email: parsed.data.email, contact: parsed.data.phone },
-        theme: { color: "#1a160f" },
+        theme: { color: "#6b1420" },
         handler: async (response: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
           const verification = await verifyCheckoutPayment({
             orderId: result.orderId,

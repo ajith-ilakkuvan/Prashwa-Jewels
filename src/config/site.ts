@@ -21,7 +21,7 @@ export const siteConfig = {
    */
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.prashwajewels.com",
   locale: "en_IN",
-  themeColor: "#1a160f",
+  themeColor: "#6b1420",
   logo: {
     src: "/logo.svg",
     alt: "Prashwa Jewels logo",
