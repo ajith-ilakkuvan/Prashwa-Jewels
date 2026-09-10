@@ -32,9 +32,17 @@ export async function Hero() {
         className="pointer-events-none absolute -bottom-32 -left-16 size-80 rounded-full border border-brand-gold/15"
       />
 
+      {/* Ambient drifting sparkles — decorative only, hidden from assistive tech and disabled under reduced motion via the .float-drift/.twinkle rules. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden sm:block">
+        <Sparkles className="sparkle-drift absolute left-[12%] top-[18%] size-5 text-brand-gold-light" />
+        <Gem className="sparkle-drift absolute right-[18%] top-[28%] size-4 text-jewel-emerald" style={{ animationDelay: "0.6s" }} />
+        <Sparkles className="sparkle-drift absolute right-[8%] bottom-[22%] size-6 text-jewel-ruby" style={{ animationDelay: "1.1s" }} />
+        <Gem className="sparkle-drift absolute left-[22%] bottom-[16%] size-4 text-jewel-sapphire" style={{ animationDelay: "1.6s" }} />
+      </div>
+
       <Container className="relative grid gap-10 py-14 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-14 lg:py-28">
         <Reveal variant="fade-up">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold-light">
+          <span className="shimmer-text inline-block text-xs font-semibold uppercase tracking-[0.2em]">
             {hero.eyebrow}
           </span>
           <GoldOrnament className="mt-4 justify-start" />

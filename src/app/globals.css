@@ -24,6 +24,20 @@
   --color-cream: #f8f4ea;
   --color-cream-dark: #efe6d2;
 
+  /**
+   * Jewel-tone accents — emerald, ruby and sapphire, the gemstones this
+   * store actually sets alongside gold. Used sparingly as accent color
+   * (icon badges, hover glows, card accents) so the site reads richer and
+   * more "jewellery shop" without displacing gold/ivory as the dominant
+   * palette.
+   */
+  --color-jewel-emerald: #1f7a5c;
+  --color-jewel-emerald-light: #d9f0e6;
+  --color-jewel-ruby: #a52148;
+  --color-jewel-ruby-light: #f6dde4;
+  --color-jewel-sapphire: #1e4d8c;
+  --color-jewel-sapphire-light: #dce7f6;
+
   --background: #ffffff;
   --foreground: var(--color-ink);
 }
@@ -42,6 +56,12 @@
   --color-ink: var(--color-ink);
   --color-cream: var(--color-cream);
   --color-cream-dark: var(--color-cream-dark);
+  --color-jewel-emerald: var(--color-jewel-emerald);
+  --color-jewel-emerald-light: var(--color-jewel-emerald-light);
+  --color-jewel-ruby: var(--color-jewel-ruby);
+  --color-jewel-ruby-light: var(--color-jewel-ruby-light);
+  --color-jewel-sapphire: var(--color-jewel-sapphire);
+  --color-jewel-sapphire-light: var(--color-jewel-sapphire-light);
   --font-sans: var(--font-body);
   --font-display: var(--font-heading);
 }
@@ -176,6 +196,124 @@
   transition:
     background-position 650ms ease 100ms,
     opacity 100ms ease;
+}
+
+/**
+ * Cursor-tracked spotlight glow: a soft radial highlight that follows the
+ * pointer across a card, plus an ambient glow on the card's own shadow.
+ * Apply `.glow-card` to the element and wire `onPointerMove` to
+ * `setSpotlightPosition` (src/lib/spotlight.ts), which sets --spot-x/
+ * --spot-y. `--glow-tint` picks the highlight color per card (defaults to
+ * gold) so cards can cycle jewel tones without extra CSS.
+ */
+.glow-card {
+  position: relative;
+  isolation: isolate;
+  transition: box-shadow 300ms ease, transform 300ms ease;
+}
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(280px circle at var(--spot-x, 50%) var(--spot-y, 50%), var(--glow-tint, rgba(184, 137, 47, 0.35)), transparent 65%);
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.glow-card:hover,
+.glow-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -12px var(--glow-shadow, rgba(184, 137, 47, 0.35));
+}
+.glow-card:hover::before,
+.glow-card:focus-within::before {
+  opacity: 1;
+}
+
+/**
+ * Shimmer-text: a gold gradient that sweeps left-to-right on a loop,
+ * distinct from the static `.text-gold-shine` above — used for a single
+ * standout word/phrase (hero eyebrow, banner kicker) rather than every
+ * gold heading, so the motion stays a rare accent.
+ */
+@keyframes shimmer-sweep {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+.shimmer-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-gold-light) 0%,
+    var(--color-brand-gold-shine) 25%,
+    var(--color-brand-gold-light) 50%,
+    var(--color-brand-gold-shine) 75%,
+    var(--color-brand-gold-light) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+
+/*
+ * Gentle drift + twinkle for decorative sparkle/gem icons scattered on dark
+ * hero and banner sections — a slow, subtle loop so it reads as ambient
+ * sparkle rather than a distracting bounce. Both run as one comma-separated
+ * `animation` list on a single class: two classes each declaring their own
+ * `animation` shorthand on the same element wouldn't combine — the one
+ * later in the stylesheet would simply overwrite the other's declaration
+ * entirely, so only one animation would ever actually run.
+ */
+@keyframes float-drift {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  50% {
+    translate: 0 -10px;
+    rotate: 8deg;
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    scale: 0.85;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.1;
+  }
+}
+.sparkle-drift {
+  animation:
+    float-drift 5s ease-in-out infinite,
+    twinkle 2.6s ease-in-out infinite;
+}
+
+/* Soft pulse for the GoldOrnament diamond marker — a small heartbeat of
+   light rather than a static flourish. */
+@keyframes ornament-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(45deg) scale(1.35);
+  }
+}
+.ornament-pulse {
+  animation: ornament-pulse 2.2s ease-in-out infinite;
 }
 
 body {

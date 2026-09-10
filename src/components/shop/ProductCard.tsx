@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { formatInr } from "@/lib/utils";
+import { setSpotlightPosition } from "@/lib/spotlight";
 import type { ProductWithRelations } from "@/lib/products";
 
 export function ProductCard({ product }: { product: ProductWithRelations }) {
@@ -11,7 +14,8 @@ export function ProductCard({ product }: { product: ProductWithRelations }) {
   return (
     <Link
       href={`/product/${product.slug}/`}
-      className="group block overflow-hidden rounded-2xl border border-charcoal/10 bg-white transition-shadow hover:shadow-lg hover:shadow-charcoal/10"
+      onPointerMove={setSpotlightPosition}
+      className="glow-card group block overflow-hidden rounded-2xl border border-charcoal/10 bg-white"
     >
       <div className="relative aspect-square overflow-hidden bg-cream">
         {image && (
