@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { formatInr } from "@/lib/utils";
+import { LoadDemoCatalogButton } from "@/components/admin/LoadDemoCatalogButton";
 
 export default async function AdminDashboardPage() {
   const [productCount, categoryCount, orderCount, paidOrders, recentOrders] = await Promise.all([
@@ -23,6 +24,10 @@ export default async function AdminDashboardPage() {
   return (
     <div>
       <h1 className="font-display text-2xl font-semibold text-charcoal">Dashboard</h1>
+
+      <div className="mt-6">
+        <LoadDemoCatalogButton />
+      </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
