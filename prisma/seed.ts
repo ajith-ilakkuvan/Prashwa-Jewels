@@ -21,7 +21,8 @@ interface SeedProduct {
   sku: string;
   stock: number;
   featured?: boolean;
-  image: string;
+  /** First image is used as the primary photo; extras become additional gallery images. */
+  images: string[];
 }
 
 interface SeedCategory {
@@ -53,22 +54,92 @@ const categories: SeedCategory[] = [
         sku: "PJ-NK-001",
         stock: 4,
         featured: true,
-        image: "/products/placeholder-necklaces.svg",
+        images: ["/products/placeholder-necklaces.svg"],
       },
       {
-        name: "The Royal Nagas Necklace",
+        name: "Royal Nagas Heritage Necklace",
         slug: "the-royal-nagas-necklace",
         description:
-          "An eternal narration of heritage — a temple-antique necklace densely worked with naga and peacock motifs in gold, set with ruby and emerald accents. From Prashwa Jewels' Royal Nagas collection.",
-        price: 265000,
+          "An eternal narration of heritage — a temple-antique necklace densely worked with naga and peacock motifs in gold, finished with a cascade of engraved coin drops and set with ruby and emerald accents. From Prashwa Jewels' Royal Nagas collection.",
+        price: 285000,
         metal: "Gold",
         purity: "22K",
-        weightGrams: 62,
+        weightGrams: 68,
         gemstone: "Ruby, Emerald",
         sku: "PJ-NK-002",
         stock: 2,
         featured: true,
-        image: "/products/placeholder-necklaces.svg",
+        images: ["/products/real/royal-nagas-heritage-necklace.jpg"],
+      },
+      {
+        name: "Royal Nagas Peacock Collar Necklace",
+        slug: "royal-nagas-peacock-collar-necklace",
+        description:
+          "A wide, temple-antique collar necklace from the Royal Nagas collection, with a pair of facing peacocks at its heart and dense naga-motif goldwork studded with ruby accents throughout.",
+        price: 310000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 74,
+        gemstone: "Ruby",
+        sku: "PJ-NK-004",
+        stock: 2,
+        featured: true,
+        images: ["/products/real/royal-nagas-peacock-collar-necklace.jpg"],
+      },
+      {
+        name: "Lakshmi Kaasu Mala",
+        slug: "lakshmi-kaasu-mala",
+        description:
+          "An ethereal Lakshmi necklace strung with antique gold coin discs and a row of engraved elephants — a traditional kaasu mala to complete any festive or bridal look.",
+        price: 145000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 34,
+        sku: "PJ-NK-005",
+        stock: 3,
+        images: ["/products/real/lakshmi-kaasu-mala.jpg"],
+      },
+      {
+        name: "Royal Puligoru Necklace",
+        slug: "royal-puligoru-necklace",
+        description:
+          "A traditional puligoru (tiger-claw) pendant on multiple strands of gold-toned pearls, with a diamond-set crown and an emerald centre — handcrafted to enhance a majestic, festive look.",
+        price: 68000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 18,
+        gemstone: "Pearl, Emerald, Diamond",
+        sku: "PJ-NK-006",
+        stock: 5,
+        images: ["/products/real/royal-puligoru-necklace.jpg"],
+      },
+      {
+        name: "Viruvah Diamonds Emerald Station Necklace",
+        slug: "viruvah-diamonds-emerald-station-necklace",
+        description:
+          "A fine gold chain with pear-cut emerald and round diamond stations set along its length — a delicate everyday piece from Viruvah Diamonds, Prashwa Jewels' fine diamond line.",
+        price: 52000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 6,
+        gemstone: "Diamond, Emerald",
+        sku: "PJ-NK-007",
+        stock: 8,
+        images: ["/products/real/viruvah-diamonds-emerald-station-necklace.jpg"],
+      },
+      {
+        name: "Designer Pearl Leaf Necklace Set",
+        slug: "designer-pearl-leaf-necklace-set",
+        description:
+          "A customised-beauty necklace and earring set with hand-shaped gold leaves fringed in seed pearls — a light, textured design for a distinctive festive look.",
+        price: 58000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 15,
+        gemstone: "Pearl",
+        sku: "PJ-NK-008",
+        stock: 6,
+        images: ["/products/real/designer-pearl-leaf-set.jpg"],
       },
       {
         name: "Rose Gold Layered Pendant Chain",
@@ -81,7 +152,7 @@ const categories: SeedCategory[] = [
         gemstone: "Diamond",
         sku: "PJ-NK-003",
         stock: 10,
-        image: "/products/placeholder-necklaces.svg",
+        images: ["/products/placeholder-necklaces.svg"],
       },
     ],
   },
@@ -103,10 +174,10 @@ const categories: SeedCategory[] = [
         sku: "PJ-ER-001",
         stock: 6,
         featured: true,
-        image: "/products/placeholder-earrings.svg",
+        images: ["/products/placeholder-earrings.svg"],
       },
       {
-        name: "Viruvah Diamonds Emerald Drop Studs",
+        name: "Viruvah Diamonds Emerald Pear Studs",
         slug: "viruvah-diamonds-emerald-drop-studs",
         description:
           "A pear-cut emerald halo in a diamond frame — from Viruvah Diamonds, Prashwa Jewels' fine diamond line.",
@@ -118,7 +189,21 @@ const categories: SeedCategory[] = [
         sku: "PJ-ER-002",
         stock: 8,
         featured: true,
-        image: "/products/placeholder-earrings.svg",
+        images: ["/products/real/viruvah-diamonds-emerald-pear-studs.jpg"],
+      },
+      {
+        name: "Textured Gold Diamond Studs",
+        slug: "textured-gold-diamond-studs",
+        description:
+          "An organically textured gold stud with a diamond-set halo at its centre — the elegance and reflection of modern design in an everyday stud.",
+        price: 34500,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 4,
+        gemstone: "Diamond",
+        sku: "PJ-ER-004",
+        stock: 10,
+        images: ["/products/real/textured-gold-diamond-studs.jpg"],
       },
       {
         name: "Viruvah Diamonds Floral Halo Studs",
@@ -132,7 +217,7 @@ const categories: SeedCategory[] = [
         gemstone: "Diamond",
         sku: "PJ-ER-005",
         stock: 12,
-        image: "/products/placeholder-earrings.svg",
+        images: ["/products/placeholder-earrings.svg"],
       },
       {
         name: "Peacock Motif Chandbali",
@@ -145,7 +230,7 @@ const categories: SeedCategory[] = [
         gemstone: "Pearl, Enamel",
         sku: "PJ-ER-003",
         stock: 8,
-        image: "/products/placeholder-earrings.svg",
+        images: ["/products/placeholder-earrings.svg"],
       },
     ],
   },
@@ -166,7 +251,65 @@ const categories: SeedCategory[] = [
         sku: "PJ-BN-001",
         stock: 3,
         featured: true,
-        image: "/products/placeholder-bangles.svg",
+        images: ["/products/placeholder-bangles.svg"],
+      },
+      {
+        name: "Antique Gold Bangles",
+        slug: "antique-gold-bangles",
+        description:
+          "Bold antique-finish bangles crafted in 22K gold, densely set with ruby and emerald accents in a traditional scrollwork pattern — sold as a pair.",
+        price: 245000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 58,
+        gemstone: "Ruby, Emerald",
+        sku: "PJ-BN-003",
+        stock: 3,
+        featured: true,
+        images: ["/products/real/antique-gold-bangles.jpg"],
+      },
+      {
+        name: "Classic Bangle",
+        slug: "classic-bangle",
+        description:
+          "A lattice-worked gold bangle with a diamond-set band running through its centre — handcrafted to enhance a feminine, everyday-luxury look.",
+        price: 135000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 22,
+        gemstone: "Diamond",
+        sku: "PJ-BN-004",
+        stock: 4,
+        featured: true,
+        images: ["/products/real/classic-bangle.jpg"],
+      },
+      {
+        name: "Antique Vanki Armlet",
+        slug: "antique-vanki-armlet",
+        description:
+          "A handcrafted antique vanki (armlet) in gold, set with ruby and polki stones around a floral centrepiece and finished with a pearl finial — an heirloom-style piece for the traditional bride.",
+        price: 165000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 28,
+        gemstone: "Ruby, Polki, Pearl",
+        sku: "PJ-BN-005",
+        stock: 3,
+        images: ["/products/real/antique-vanki-armlet.jpg"],
+      },
+      {
+        name: "Diamond Eye Cuff Bracelet",
+        slug: "diamond-eye-cuff-bracelet",
+        description:
+          "An open cuff bracelet in gold with two diamond-set navette clusters — the elegance and reflection of modern design in a versatile everyday piece.",
+        price: 78000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 6,
+        gemstone: "Diamond",
+        sku: "PJ-BN-006",
+        stock: 6,
+        images: ["/products/real/diamond-eye-cuff-bracelet.jpg"],
       },
       {
         name: "Diamond Tennis Bracelet",
@@ -179,7 +322,7 @@ const categories: SeedCategory[] = [
         gemstone: "Diamond",
         sku: "PJ-BN-002",
         stock: 5,
-        image: "/products/placeholder-bangles.svg",
+        images: ["/products/placeholder-bangles.svg"],
       },
     ],
   },
@@ -201,7 +344,7 @@ const categories: SeedCategory[] = [
         sku: "PJ-RG-001",
         stock: 6,
         featured: true,
-        image: "/products/placeholder-rings.svg",
+        images: ["/products/placeholder-rings.svg"],
       },
       {
         name: "Antique Floral Gold Ring",
@@ -214,7 +357,7 @@ const categories: SeedCategory[] = [
         gemstone: "Ruby",
         sku: "PJ-RG-002",
         stock: 9,
-        image: "/products/placeholder-rings.svg",
+        images: ["/products/placeholder-rings.svg"],
       },
     ],
   },
@@ -239,7 +382,69 @@ const categories: SeedCategory[] = [
         sku: "PJ-BR-001",
         stock: 1,
         featured: true,
-        image: "/products/placeholder-bridal.svg",
+        images: ["/products/placeholder-bridal.svg"],
+      },
+      {
+        name: "Timeless Beauty Ruby Diamond Necklace",
+        slug: "timeless-beauty-ruby-diamond-necklace",
+        description:
+          "Inspired from the best, this lustrous creation of diamonds and gemstones is sheer brilliance — a dense diamond choker necklace centred on a square-cut ruby, finished with a fringe of drop pearls.",
+        price: 875000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 85,
+        gemstone: "Diamond, Ruby, Pearl",
+        sku: "PJ-BR-002",
+        stock: 1,
+        featured: true,
+        images: ["/products/real/timeless-beauty-ruby-necklace-1.jpg", "/products/real/timeless-beauty-ruby-necklace-2.jpg"],
+      },
+      {
+        name: "Timeless Beauty Emerald Diamond Necklace",
+        slug: "timeless-beauty-emerald-diamond-necklace",
+        description:
+          "Inspired from the best, this lustrous creation of diamonds and gemstones is sheer brilliance — a dense diamond choker necklace scattered with oval emeralds in halo settings, for the bride who wants to make an entrance.",
+        price: 925000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 88,
+        gemstone: "Diamond, Emerald",
+        sku: "PJ-BR-003",
+        stock: 1,
+        featured: true,
+        images: [
+          "/products/real/timeless-beauty-emerald-necklace-1.jpg",
+          "/products/real/timeless-beauty-emerald-necklace-2.jpg",
+        ],
+      },
+      {
+        name: "Antique Meenakari Pearl Haar",
+        slug: "antique-meenakari-pearl-haar",
+        description:
+          "A handcrafted, multi-strand seed pearl haar with a hand-painted meenakari medallion pendant and matching earrings — customised beauty for the bride's most memorable day.",
+        price: 195000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 72,
+        gemstone: "Pearl, Kundan, Enamel",
+        sku: "PJ-BR-004",
+        stock: 2,
+        featured: true,
+        images: ["/products/real/antique-meenakari-pearl-haar-1.jpg", "/products/real/antique-meenakari-pearl-haar-2.jpg"],
+      },
+      {
+        name: "Ruby Peacock Necklace Set",
+        slug: "ruby-peacock-necklace-set",
+        description:
+          "Moments of magic and beauty, specially designed for the traditional bride — an antique-finish necklace with a facing-peacock motif and a chandbali-style ruby pendant, paired with matching peacock stud earrings.",
+        price: 225000,
+        metal: "Gold",
+        purity: "22K",
+        weightGrams: 54,
+        gemstone: "Ruby",
+        sku: "PJ-BR-005",
+        stock: 2,
+        images: ["/products/real/ruby-peacock-necklace-set.jpg"],
       },
     ],
   },
@@ -259,7 +464,35 @@ const categories: SeedCategory[] = [
         weightGrams: 14,
         sku: "PJ-CH-001",
         stock: 15,
-        image: "/products/placeholder-chains.svg",
+        images: ["/products/placeholder-chains.svg"],
+      },
+      {
+        name: "Interlock Diamond Pendant Set",
+        slug: "interlock-diamond-pendant-set",
+        description:
+          "Elegance and reflection of modern design — interlocking rose gold rings, one diamond-set, form a pendant and matching stud earrings for a versatile everyday-luxury look.",
+        price: 72000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 9,
+        gemstone: "Diamond",
+        sku: "PJ-CH-003",
+        stock: 6,
+        featured: true,
+        images: ["/products/real/interlock-diamond-pendant-set.jpg"],
+      },
+      {
+        name: "Couple Pendants",
+        slug: "couple-pendants",
+        description:
+          "Presenting bold gold couple jewellery — a matching pair of monogram pendants in 18K gold on fine box chains, customised with your initials.",
+        price: 28000,
+        metal: "Gold",
+        purity: "18K",
+        weightGrams: 8,
+        sku: "PJ-CH-004",
+        stock: 10,
+        images: ["/products/real/couple-pendants.jpg"],
       },
       {
         name: "Om Pendant with Chain",
@@ -271,7 +504,7 @@ const categories: SeedCategory[] = [
         weightGrams: 5.5,
         sku: "PJ-CH-002",
         stock: 20,
-        image: "/products/placeholder-chains.svg",
+        images: ["/products/placeholder-chains.svg"],
       },
     ],
   },
@@ -306,7 +539,7 @@ async function main() {
     });
 
     for (const product of category.products) {
-      await db.product.upsert({
+      const upsertedProduct = await db.product.upsert({
         where: { slug: product.slug },
         create: {
           name: product.name,
@@ -322,7 +555,6 @@ async function main() {
           stock: product.stock,
           featured: product.featured ?? false,
           categoryId: createdCategory.id,
-          images: { create: [{ url: product.image, alt: product.name, sortOrder: 0 }] },
         },
         update: {
           name: product.name,
@@ -337,6 +569,18 @@ async function main() {
           featured: product.featured ?? false,
           categoryId: createdCategory.id,
         },
+      });
+
+      // Re-sync images every run (not just on create) so swapping a
+      // placeholder for a real photo takes effect on a re-seed.
+      await db.productImage.deleteMany({ where: { productId: upsertedProduct.id } });
+      await db.productImage.createMany({
+        data: product.images.map((url, sortOrder) => ({
+          url,
+          alt: product.name,
+          sortOrder,
+          productId: upsertedProduct.id,
+        })),
       });
     }
   }
