@@ -341,6 +341,37 @@ body {
   }
 }
 
+/**
+ * Isometric jewellery pieces (ring/gemstone/pendant icons rendered as
+ * shaded isometric cubes) that slowly tumble in 3D and float — used in
+ * IsometricShowcase. Built on the individual `rotate`/`translate`
+ * transform properties (not the `transform` shorthand) since both are
+ * animated together within one keyframe set here, so there's no risk of
+ * a second `transform`-based animation on the same element overwriting
+ * this one (see the `.sparkle-drift` comment above for why that matters).
+ */
+.iso-scene {
+  perspective: 900px;
+}
+@keyframes iso-spin-float {
+  0% {
+    rotate: 0 1 0 0deg;
+    translate: 0 0;
+  }
+  50% {
+    rotate: 0 1 0 180deg;
+    translate: 0 -14px;
+  }
+  100% {
+    rotate: 0 1 0 360deg;
+    translate: 0 0;
+  }
+}
+.iso-piece {
+  transform-style: preserve-3d;
+  animation: iso-spin-float 9s ease-in-out infinite;
+}
+
 /* Shared form-field style — used across checkout, contact and admin forms
    so every input/select/textarea looks consistent without repeating the
    same long Tailwind class string everywhere. */
