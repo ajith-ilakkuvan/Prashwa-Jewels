@@ -25,7 +25,7 @@ const defaults = {
     headline: "Handcrafted Fine Jewels, from a Palace of Our Own",
     subheading:
       "A boutique jewellery house in the heart of Coimbatore — every piece handcrafted, hallmarked, and chosen to be worn for generations.",
-    image: "",
+    image: "/hero/hero-necklace.webp",
   } satisfies HeroContent,
   about: {
     story:
